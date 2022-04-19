@@ -10,6 +10,14 @@ router.use((req, res, next) => {
   next();
 })
 
+/**
+ * @api {get} /dev Request dev information
+ * @apiName GetDev
+ * @apiGroup Dev
+ *
+ * @apiSuccess {String} Message string and Data object.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ */
 router.use('/dev', (req, res, next) => {
   console.log('Router level middleware just for dev');
 

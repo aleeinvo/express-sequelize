@@ -17,10 +17,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Classroom.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlee(value) {
+          if(value.length < 8) {
+            throw new Error('Name should longer than 5');
+          }
+        }
+      }
+    },
   }, {
     sequelize,
     modelName: 'Classroom',
+    validate: {
+      shouldBeClass(){
+        if(!this.name.endsWith('class')) {
+          throw new Error('it should be class');
+        }
+      }
+    }
   });
   return Classroom;
 };
