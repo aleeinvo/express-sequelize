@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
           throw new Error('it should be class');
         }
       }
+    },
+    hooks: {
+      beforeCreate(classroom, options) {
+        classroom.name = 'This name is being set in the hook';
+      }
     }
   });
   return Classroom;
