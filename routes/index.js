@@ -10,20 +10,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/dev', function(req, res, next) {
-  const sequelize = new Sequelize();
-
-  try {
-    sequelize.authenticate();
-
-    res.json({
-      status: 'good'
-    });
-  } catch(error) {
-    res.json({
-      status: error
-    })
-  }
-})
+  return res.send({
+    message: 'Hello Dev!',
+    data: {}
+  });
+});
 
 router.get('/api/classrooms', classroomController.index);
 router.get('/api/classrooms/:id', classroomController.show);

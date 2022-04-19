@@ -9,6 +9,36 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+app.use((req, res, next) => {
+  console.log('Time:', Date.now());
+
+  next();
+})
+
+app.use('/api/classrooms', (req, res, next) => {
+  console.log(req.path, ' on classrooms');
+
+  next();
+})
+
+app.use('/dev', (req, res, next) => {
+  console.log('Dev Middleware One');
+
+  next();
+}, (req, res, next) => {
+  console.log('Dev Middleware Two');
+
+  return res.send({
+    message: 'You will not reach there'
+  })
+
+  next();
+}, (req, res, next) => {
+  console.log('Dev Middleware Three');
+
+  next();
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,6 +56,8 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
