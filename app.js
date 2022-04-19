@@ -21,23 +21,37 @@ app.use('/api/classrooms', (req, res, next) => {
   next();
 })
 
-app.use('/dev', (req, res, next) => {
-  console.log('Dev Middleware One');
-
-  next();
+app.get('/api/classrooms/:id', (req, res, next) => {
+  
+  if(req.params.id == '0') {
+    console.log('We have reached hre');
+    next();
+  } else {
+    next();
+  }
 }, (req, res, next) => {
-  console.log('Dev Middleware Two');
-
-  return res.send({
-    message: 'You will not reach there'
-  })
-
-  next();
-}, (req, res, next) => {
-  console.log('Dev Middleware Three');
+  console.log('this is the next middleware for the classrooms show');
 
   next();
 })
+
+// app.use('/dev', (req, res, next) => {
+//   console.log('Dev Middleware One');
+
+//   next();
+// }, (req, res, next) => {
+//   console.log('Dev Middleware Two');
+
+//   return res.send({
+//     message: 'You will not reach there'
+//   })
+
+//   next();
+// }, (req, res, next) => {
+//   console.log('Dev Middleware Three');
+
+//   next();
+// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -4,6 +4,18 @@ const classroomController = require('../controllers').classroom;
 
 const { Sequelize } = require('sequelize');
 
+router.use((req, res, next) => {
+  console.log('Router level global middleware');
+
+  next();
+})
+
+router.use('/dev', (req, res, next) => {
+  console.log('Router level middleware just for dev');
+
+  next();
+})
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
