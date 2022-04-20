@@ -9,31 +9,31 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-app.use((req, res, next) => {
-  console.log('Time:', Date.now());
+// app.use((req, res, next) => {
+//   console.log('Time:', Date.now());
 
-  next();
-})
+//   next();
+// })
 
-app.use('/api/classrooms', (req, res, next) => {
-  console.log(req.path, ' on classrooms');
+// app.use('/api/classrooms', (req, res, next) => {
+//   console.log(req.path, ' on classrooms');
 
-  next();
-})
+//   next();
+// })
 
-app.get('/api/classrooms/:id', (req, res, next) => {
+// app.get('/api/classrooms/:id', (req, res, next) => {
   
-  if(req.params.id == '0') {
-    console.log('We have reached hre');
-    next();
-  } else {
-    next();
-  }
-}, (req, res, next) => {
-  console.log('this is the next middleware for the classrooms show');
+//   if(req.params.id == '0') {
+//     console.log('We have reached hre');
+//     next();
+//   } else {
+//     next();
+//   }
+// }, (req, res, next) => {
+//   console.log('this is the next middleware for the classrooms show');
 
-  next();
-})
+//   next();
+// })
 
 // app.use('/dev', (req, res, next) => {
 //   console.log('Dev Middleware One');

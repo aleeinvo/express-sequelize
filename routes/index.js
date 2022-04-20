@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const classroomController = require('../controllers').classroom;
+const dev = require('../controllers').dev;
 
 const { Sequelize } = require('sequelize');
 
-router.use((req, res, next) => {
-  console.log('Router level global middleware');
+// router.use((req, res, next) => {
+//   console.log('Router level global middleware');
 
-  next();
-})
+//   next();
+// })
 
 /**
  * @api {get} /dev Request dev information
@@ -18,22 +19,11 @@ router.use((req, res, next) => {
  * @apiSuccess {String} Message string and Data object.
  * @apiSuccess {String} lastname  Lastname of the User.
  */
-router.use('/dev', (req, res, next) => {
-  console.log('Router level middleware just for dev');
-
-  next();
-})
+router.get('/dev', dev.index);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
-});
-
-router.get('/dev', function(req, res, next) {
-  return res.send({
-    message: 'Hello Dev!',
-    data: {}
-  });
 });
 
 router.get('/api/classrooms', classroomController.index);
