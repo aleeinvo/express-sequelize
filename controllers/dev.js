@@ -6,11 +6,14 @@ myEmitter.once('dev', function() {
     console.log('Dev Event has occoured');
 });
 
+myEmitter.on('error', function(e) {
+    console.error('Oops, error has occured');
+})
+
+myEmitter.emit('error', new Error());
+
 module.exports = {
     index(req, res) {
-        myEmitter.emit('dev');
-        myEmitter.emit('dev');
-        myEmitter.emit('dev');
         myEmitter.emit('dev');
         return res.send({
             message: 'Hello Dev!',
